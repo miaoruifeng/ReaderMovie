@@ -1,0 +1,8 @@
+@import "post-item/post-item-template";
+swiper {
+    height: 454rpx;
+}
+.swiper-img {
+    width: 100%;
+    height: 454rpx;
+}

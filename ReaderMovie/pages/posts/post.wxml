@@ -1,0 +1,18 @@
+<import src="post-item/post-item-template" />
+
+<view>
+
+    <swiper autoplay="true" circular="true" indicator-dots="true" indicator-color="white" indicator-active-color="orange">
+        <block wx:for="{{bannerImgUrls}}" wx:key="{{index}}">
+            <swiper-item>
+                <image class="swiper-img" src="{{item}}"></image>
+            </swiper-item>
+        </block>
+    </swiper>
+
+    <block wx:for="{{postsList}}" wx:key="{{index}}">
+        <!-- template模板 -->
+        <template is="postItem" data="{{item}}" />
+    </block>
+
+</view>
