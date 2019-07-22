@@ -53,7 +53,7 @@
 }
 .post-info-num {
     font-size: 12px;
-    color: #666;
+    color: #999;
     margin-left: 10rpx;
     margin-right: 60rpx;
 }
