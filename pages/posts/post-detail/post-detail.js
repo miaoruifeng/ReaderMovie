@@ -31,7 +31,7 @@ Page({
         // console.log(key1);
         // wx.removeStorageSync('key');
         // wx.clearStorageSync();
-        
+
         // 利用storage缓存 模拟实现收藏-取消收藏
 
         // var postsCollected = {
@@ -49,7 +49,7 @@ Page({
                     collected: postCollected
                 });
             }
-        }else {
+        } else {
             var postsCollected = {};
             postsCollected[postId] = false;
             wx.setStorageSync('posts_collected', postsCollected);
@@ -62,9 +62,38 @@ Page({
         var postCollected = postsCollected[this.data.currentPostId];
         postCollected = !postCollected; // 收藏变成未收藏 未收藏变成收藏
         postsCollected[this.data.currentPostId] = postCollected;
+        this.showToast(postCollected, postsCollected);
+        // this.showModal(postCollected, postsCollected);
+    },
+
+    showToast: function(postCollected, postsCollected) {
         wx.setStorageSync('posts_collected', postsCollected); //更新文章是否收藏的缓存值
         this.setData({ //更新数据绑定，从而实现切换图片
             collected: postCollected
+        });
+        wx.showToast({
+            title: postCollected ? '收藏成功' : '取消收藏',
+            icon: 'success',
+            duration: 1000
+        });
+    },
+
+    showModal: function(postCollected, postsCollected) {
+        wx.showModal({
+            title: '收藏',
+            content: postCollected ? '收藏该文章？' : '取消收藏该文章？',
+            cancelText: '取消',
+            cancelColor: '#333',
+            confirmText: '确认',
+            confirmColor: '#405f80',
+            success: res => {
+                if (res.confirm) {
+                    wx.setStorageSync('posts_collected', postsCollected);
+                    this.setData({
+                        collected: postCollected
+                    });
+                }
+            }
         });
     },
 
