@@ -1,4 +1,4 @@
-var postsData = require('../../data/posts-data.js');
+var postsData = require("../../data/posts-data.js");
 
 Page({
 
@@ -7,6 +7,14 @@ Page({
      */
     data: {
         // postsList: []
+    },
+
+    onPostTap: function(e) {
+        const postId = e.currentTarget.dataset.postid;
+        wx.navigateTo({
+            // url: 'post-detail/post-detail?id=' + postId
+            url: `post-detail/post-detail?id=${postId}`
+        });
     },
 
     /**
