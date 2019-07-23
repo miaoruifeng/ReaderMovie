@@ -1,4 +1,5 @@
 var postsData = require("../../../data/posts-data.js");
+var app = getApp();
 
 Page({
 
@@ -6,7 +7,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        // collected: true
+        isPlayingMusic: false
     },
 
     /**
@@ -54,6 +55,16 @@ Page({
             postsCollected[postId] = false;
             wx.setStorageSync('posts_collected', postsCollected);
         }
+
+        // 返回后再次进入详情页时 播放-暂停按钮保持一致
+        if (app.globalData.g_isPlayingMusic && app.globalData.g_currentMusicPostId === this.data.currentPostId) {
+            this.setData({
+                isPlayingMusic: true
+            });
+        }
+
+        // 总控开关切换时 播放-暂停按钮同步切换
+        this.musicMonitor();
     },
 
     onCollectionTap: function() {
@@ -135,6 +146,46 @@ Page({
                     });
                 }
             }
+        });
+    },
+
+    onMusicTap: function(event) {
+        const currentPostId = this.data.currentPostId;
+        const postData = postsData.postList[currentPostId];
+        const isPlayingMusic = this.data.isPlayingMusic;
+        if (isPlayingMusic) {
+            wx.pauseBackgroundAudio();
+            this.setData({
+                isPlayingMusic: false
+            });
+        } else {
+            wx.playBackgroundAudio({
+                dataUrl: postData.music.url,
+                title: postData.music.title,
+                coverImgUrl: postData.music.coverImg
+            });
+            this.setData({
+                isPlayingMusic: true
+            });
+        }
+    },
+
+    // 总控开关切换时 播放-暂停按钮同步切换
+    musicMonitor: function() {
+        var that = this;
+        wx.onBackgroundAudioPlay(function() {
+            that.setData({
+                isPlayingMusic: true
+            });
+            app.globalData.g_isPlayingMusic = true;
+            app.globalData.g_currentMusicPostId = that.data.currentPostId;
+        });
+        wx.onBackgroundAudioPause(function() {
+            that.setData({
+                isPlayingMusic: false
+            });
+            app.globalData.g_isPlayingMusic = false;
+            app.globalData.g_currentMusicPostId = null;
         });
     },
 
