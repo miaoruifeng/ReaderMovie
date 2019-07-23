@@ -57,13 +57,54 @@ Page({
     },
 
     onCollectionTap: function() {
+        this.getPostsCollectedSyc();
+        // this.getPostsCollectedAsy();
+    },
+
+    // storage缓存同步异步比较
+    // 同步缺点：若方法执行慢的话，影响页面渲染，耗时比较长；
+    // 异步缺点：可能嵌套很多，回调比较复杂，代码的可阅读性可能比较差，业务需要解耦时用异步（是否用异步根据业务需求而定）
+
+    getPostsCollectedSyc: function(event) { //同步
         var postsCollected = wx.getStorageSync('posts_collected');
-        // console.log(this.data.currentPostId);
         var postCollected = postsCollected[this.data.currentPostId];
         postCollected = !postCollected; // 收藏变成未收藏 未收藏变成收藏
         postsCollected[this.data.currentPostId] = postCollected;
         this.showToast(postCollected, postsCollected);
         // this.showModal(postCollected, postsCollected);
+    },
+
+    getPostsCollectedAsy: function(evet) { //异步
+        wx.getStorage({
+            key: 'posts_collected',
+            success: res => {
+                var postsCollected = res.data;
+                var postCollected = postsCollected[this.data.currentPostId];
+                postCollected = !postCollected; // 收藏变成未收藏 未收藏变成收藏
+                postsCollected[this.data.currentPostId] = postCollected;
+                this.showToast(postCollected, postsCollected);
+                // this.showModal(postCollected, postsCollected);
+            },
+        });
+    },
+
+    onShareTap: function(event) {
+        const itemList = [
+            '分享给好友',
+            '分享到朋友圈',
+            '分享到QQ',
+            '分享到微薄'
+        ];
+        wx.showActionSheet({
+            itemList: itemList,
+            itemColor: '#405f80',
+            success: res => {
+                wx.showModal({
+                    title: itemList[res.tapIndex],
+                    content: '现在无法实现分享功能',
+                });
+            }
+        });
     },
 
     showToast: function(postCollected, postsCollected) {
