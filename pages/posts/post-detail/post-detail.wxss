@@ -15,7 +15,7 @@
     left: 50%;
     margin-left: -51rpx;
     top: 175rpx;
-    opacity: 0.8;
+    opacity: 0.6;
 }
 
 .author-date {
