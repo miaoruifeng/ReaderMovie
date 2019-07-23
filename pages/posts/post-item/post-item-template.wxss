@@ -35,7 +35,7 @@
 .post-content {
     padding: 0 10px;
     margin-top: 20rpx;
-    font-size: 12px;
+    font-size: 13px;
     color: #666;
     letter-spacing: 2rpx;
 }
