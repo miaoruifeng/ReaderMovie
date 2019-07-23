@@ -4,5 +4,5 @@ swiper {
 }
 .swiper-img {
     width: 100%;
-    height: 454rpx;
+    height: 450rpx;
 }

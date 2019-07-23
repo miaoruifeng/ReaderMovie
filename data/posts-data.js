@@ -1,7 +1,7 @@
 var local_bannerurls = [
-    "/images/swiper/swiper1.png",
-    "/images/swiper/swiper2.png",
-    "/images/swiper/swiper3.png",
+    "/images/swiper/pic0.jpg",
+    "/images/swiper/pic1.jpg",
+    "/images/swiper/pic2.jpg",
 ]
 var local_database = [{
     id: 0,

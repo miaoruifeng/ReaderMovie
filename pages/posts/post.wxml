@@ -2,10 +2,10 @@
 
 <view>
 
-    <swiper autoplay="true" circular="true" indicator-dots="true" indicator-color="white" indicator-active-color="orange">
+    <swiper catchtap="onSwiperTap" autoplay="true" circular="true" indicator-dots="true" indicator-color="white" indicator-active-color="orange">
         <block wx:for="{{bannerImgUrls}}" wx:key="{{index}}">
             <swiper-item>
-                <image class="swiper-img" src="{{item}}"></image>
+                <image class="swiper-img" src="{{item}}" data-postId="{{index}}"></image>
             </swiper-item>
         </block>
     </swiper>
