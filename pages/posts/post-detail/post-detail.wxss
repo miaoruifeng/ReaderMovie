@@ -88,4 +88,5 @@
     margin-top: 20rpx;
     color: #666;
     letter-spacing: 2rpx;
+    padding-bottom: 20rpx;
 }
