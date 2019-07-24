@@ -3,7 +3,7 @@
         "pages/welcome/welcome",
         "pages/posts/post",
         "pages/posts/post-detail/post-detail",
-        "pages/movies/movie"
+        "pages/movies/movies"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -25,7 +25,7 @@
                 "selectedIconPath": "/images/tab/yuedu_hl.png"
             },
             {
-                "pagePath": "pages/movies/movie",
+                "pagePath": "pages/movies/movies",
                 "text": "电影",
                 "iconPath": "/images/tab/dianying.png",
                 "selectedIconPath": "/images/tab/dianying_hl.png"
