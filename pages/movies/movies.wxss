@@ -1,5 +1,5 @@
 @import "movie-list/movie-list-template.wxss";
 
-page {
+.container {
     background-color: #f5f5f5;
 }

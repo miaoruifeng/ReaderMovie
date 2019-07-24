@@ -1,7 +1,7 @@
 <import src="movie-list/movie-list-template" />
 
-<view>
-    <template is="movieListTemplate" />
-    <template is="movieListTemplate" />
-    <template is="movieListTemplate" />
+<view class="container">
+    <template is="movieListTemplate" data="{{...inTheater}}" />
+    <template is="movieListTemplate" data="{{...comingSoon}}" />
+    <template is="movieListTemplate" data="{{...top250}}" />
 </view>
