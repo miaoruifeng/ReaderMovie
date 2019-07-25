@@ -38,7 +38,6 @@ Page({
                 "Content-Type": "json"
             },
             success: res => {
-                // console.log(res);
                 this.processDoubanData(res.data, settedKey, categoryTitle);
             },
             fail: err => {
@@ -48,8 +47,6 @@ Page({
     },
 
     processDoubanData: function(moviesData, settedKey, categoryTitle) {
-        // console.log(moviesData);
-        // console.log(settedKey);
         var movies = [];
         for (var idx in moviesData.subjects) {
             var subject = moviesData.subjects[idx];
@@ -66,13 +63,11 @@ Page({
             }
             movies.push(temp);
         }
-        // console.log(movies);
         var readyData = {};
         readyData[settedKey] = {
             categoryTitle,
             movies //es6写法 定义一个空对象，然后给对应属性赋值（JavaScript动态属性赋值） => inTheater: movies, comingSoon: movies, top250: movies
         }
-        // console.log(readyData);
         // this.setData({
         //     movies
         // });
