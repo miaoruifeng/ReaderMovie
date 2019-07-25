@@ -48,7 +48,7 @@ Page({
     },
 
     processDoubanData: function(moviesData, settedKey, categoryTitle) {
-        console.log(moviesData);
+        // console.log(moviesData);
         // console.log(settedKey);
         var movies = [];
         for (var idx in moviesData.subjects) {
