@@ -24,7 +24,7 @@ Page({
         var inTheaterUrl = app.globalData.doubanBase + '/v2/movie/in_theaters' + '?start=0&count=3';
         var comingSoonUrl = app.globalData.doubanBase + '/v2/movie/coming_soon' + '?start=0&count=3';
         var top250Url = app.globalData.doubanBase + '/v2/movie/top250' + '?start=0&count=3';
-        this.getMovieListData(inTheaterUrl, 'inTheater', '正在上映');
+        this.getMovieListData(inTheaterUrl, 'inTheater', '正在热映');
         this.getMovieListData(comingSoonUrl, 'comingSoon', '即将上映');
         this.getMovieListData(top250Url, 'top250', '豆瓣Top50');
     },
@@ -77,6 +77,13 @@ Page({
         //     movies
         // });
         this.setData(readyData);
+    },
+
+    onMoreTap: function(event) {
+        const category = event.currentTarget.dataset.category;
+        wx.navigateTo({
+            url: 'more-movie/more-movie?category=' + category,
+        });
     },
 
     /**
