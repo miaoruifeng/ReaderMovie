@@ -2,9 +2,9 @@ App({
     globalData: {
         g_isPlayingMusic: false,
         g_currentMusicPostId: null,
-        doubanBase: 'http://t.yushu.im',
-        // doubanBase: 'https://api.douban.com',
-        // apikey: '0df993c66c0c636e29ecbb5344252a4a'
+        // doubanBase: 'http://t.yushu.im',
+        doubanBase: 'https://api.douban.com',
+        apikey: '?apikey=0df993c66c0c636e29ecbb5344252a4a'
     },
 
     /**

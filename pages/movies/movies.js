@@ -1,4 +1,4 @@
-var  util = require("../../utils/utils.js");
+var util = require("../../utils/utils.js");
 var app = getApp();
 
 Page({
@@ -16,14 +16,14 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        // var inTheaterUrl = 'https://api.douban.com/v2/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=10'
-        // var inTheaterUrl = app.globalData.doubanBase + '/v2/movie/in_theaters?apikey=' + app.globalData.apikey;
-        // var comingSoonUrl = app.globalData.doubanBase + '/v2/movie/coming_soon?apikey=' + app.globalData.apikey;
-        // var top250Url = app.globalData.doubanBase + '/v2/movie/top250?apikey=' + app.globalData.apikey;
+        // var inTheaterUrl = 'https://api.douban.com/v2/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=3';
+        // var inTheaterUrl = app.globalData.doubanBase + '/v2/movie/in_theaters' + '?start=0&count=3';
+        // var comingSoonUrl = app.globalData.doubanBase + '/v2/movie/coming_soon' + '?start=0&count=3';
+        // var top250Url = app.globalData.doubanBase + '/v2/movie/top250' + '?start=0&count=3';
 
-        var inTheaterUrl = app.globalData.doubanBase + '/v2/movie/in_theaters' + '?start=0&count=3';
-        var comingSoonUrl = app.globalData.doubanBase + '/v2/movie/coming_soon' + '?start=0&count=3';
-        var top250Url = app.globalData.doubanBase + '/v2/movie/top250' + '?start=0&count=3';
+        var inTheaterUrl = app.globalData.doubanBase + '/v2/movie/in_theaters' + app.globalData.apikey + '&start=0&count=3';
+        var comingSoonUrl = app.globalData.doubanBase + '/v2/movie/coming_soon' + app.globalData.apikey + '&start=0&count=3';
+        var top250Url = app.globalData.doubanBase + '/v2/movie/top250' + app.globalData.apikey + '&start=0&count=3';
         this.getMovieListData(inTheaterUrl, 'inTheater', '正在热映');
         this.getMovieListData(comingSoonUrl, 'comingSoon', '即将上映');
         this.getMovieListData(top250Url, 'top250', '豆瓣Top50');
@@ -35,7 +35,7 @@ Page({
             url: url,
             method: 'GET',
             header: {
-                "Conten-Type": "json"
+                "Content-Type": "json"
             },
             success: res => {
                 // console.log(res);

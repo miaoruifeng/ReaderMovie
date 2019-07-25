@@ -7,7 +7,11 @@ Page({
      * 页面的初始数据
      */
     data: {
-        categoryTitle: ''
+        movies: {},
+        categoryTitle: '',
+        requestUrl: '',
+        totalCount: 0,
+        isEmpty: true
     },
 
     /**
@@ -18,39 +22,25 @@ Page({
         this.setData({
             categoryTitle: category
         });
-
         var dataUrl = '';
         switch (category) {
             case '正在热映':
-                dataUrl = app.globalData.doubanBase + '/v2/movie/in_theaters';
+                dataUrl = app.globalData.doubanBase + '/v2/movie/in_theaters' + app.globalData.apikey;
                 break;
             case '即将上映':
-                dataUrl = app.globalData.doubanBase + '/v2/movie/coming_soon';
+                dataUrl = app.globalData.doubanBase + '/v2/movie/coming_soon' + app.globalData.apikey;
                 break;
             case '豆瓣Top50':
-                dataUrl = app.globalData.doubanBase + '/v2/movie/top250';
+                dataUrl = app.globalData.doubanBase + '/v2/movie/top250' + app.globalData.apikey;
                 break;
         };
-        this.getMovieListData(dataUrl);
-    },
-
-    getMovieListData: function(url) {
-        wx.request({
-            url: url,
-            method: 'GET',
-            header: {
-                "Conten-Type": "json"
-            },
-            success: res => {
-                this.processDoubanData(res.data);
-            },
-            fail: err => {
-                console.error(err);
-            }
-        });
+        this.data.requestUrl = dataUrl;
+        util.http(dataUrl, this.processDoubanData);
     },
 
     processDoubanData: function(moviesData) {
+        // console.log(moviesData.total);
+        var total = moviesData.total;
         var movies = [];
         for (var idx in moviesData.subjects) {
             var subject = moviesData.subjects[idx];
@@ -67,9 +57,28 @@ Page({
             }
             movies.push(temp);
         }
+        // 如果要绑定新加载的数据，那么需要同旧有的数据合并在一起
+        var totalMovies = {};
+        if (!this.data.isEmpty) {
+            totalMovies = this.data.movies.concat(movies);
+        } else {
+            totalMovies = movies;
+            this.data.isEmpty = false;
+        }
         this.setData({
-            movies
+            movies: totalMovies
         });
+        // console.log(movies);
+        this.data.totalCount += 20;
+        wx.hideNavigationBarLoading();
+        wx.stopPullDownRefresh();
+        // console.log(this.data.totalCount);
+        if (this.data.totalCount >= total) {
+            this.data.totalCount = total;
+            wx.showToast({
+                title: '已经到底啦！',
+            });
+        }
     },
 
 
@@ -107,14 +116,21 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function() {
-
+        var refreshUrl = this.data.requestUrl + '&start=0&count=20';
+        this.data.movies = {};
+        this.data.isEmpty = true;
+        this.data.totalCount = 0;
+        util.http(refreshUrl, this.processDoubanData);
+        wx.showNavigationBarLoading();
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function() {
-
+        var nextUrl = this.data.requestUrl + '&start=' + this.data.totalCount + '&count=20';
+        util.http(nextUrl, this.processDoubanData);
+        wx.showNavigationBarLoading();
     },
 
     /**
