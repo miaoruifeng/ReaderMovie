@@ -9,7 +9,11 @@ Page({
     data: {
         inTheater: {},
         comingSoon: {},
-        top250: {}
+        top250: {},
+        searchResult: {},
+        containerShow: true,
+        searchPanelShow: false,
+        searchInputValue: ''
     },
 
     /**
@@ -27,6 +31,29 @@ Page({
         this.getMovieListData(inTheaterUrl, 'inTheater', '正在热映');
         this.getMovieListData(comingSoonUrl, 'comingSoon', '即将上映');
         this.getMovieListData(top250Url, 'top250', '豆瓣Top50');
+    },
+
+    onBindFocus: function(event){
+        this.setData({
+            containerShow: false,
+            searchPanelShow: true
+        });
+    },
+
+    onBindConfirm: function(event) {
+        var value = event.detail.value;
+        // var searchUrl = app.globalData.doubanBase + '/v2/movie/search?q=' + value + '&apikey=0df993c66c0c636e29ecbb5344252a4a';
+        var searchUrl = 'http://t.yushu.im' + '/v2/movie/search?q=' + value;
+        this.getMovieListData(searchUrl, 'searchResult', '');
+    },
+
+    onCancelImgTap: function(event) {
+        this.setData({
+            containerShow: true,
+            searchPanelShow: false,
+            searchResult: {},
+            searchInputValue: ''
+        }); 
     },
 
     // 请求电影列表

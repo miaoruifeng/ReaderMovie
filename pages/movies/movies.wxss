@@ -1,5 +1,40 @@
 @import "movie-list/movie-list-template.wxss";
+@import "movie-grid/movie-grid-template.wxss";
 
 .container {
     background-color: #f5f5f5;
+}
+
+.search-group {
+    display: flex;
+    flex-direction: row;
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 0 10px;
+    background-color: #f5f5f5;
+}
+
+.icon-img {
+    margin: 14rpx 20rpx 0 0;
+}
+
+.search-input {
+    flex: 1;
+    height: 100%;
+}
+
+.input-placeholder {
+    font-size: 13px;
+    color: #ddd;
+}
+
+.search-panel {
+    position: absolute;
+    top: 80rpx;
+}
+
+.xx-img {
+    width: 26rpx;
+    height: 26rpx;
+    margin: auto 0 auto 20rpx;
 }
