@@ -21,6 +21,7 @@
 .search-input {
     flex: 1;
     height: 100%;
+    line-height: 80rpx;
 }
 
 .input-placeholder {
