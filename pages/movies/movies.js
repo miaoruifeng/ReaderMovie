@@ -95,6 +95,7 @@ Page({
             categoryTitle,
             movies //es6写法 定义一个空对象，然后给对应属性赋值（JavaScript动态属性赋值） => inTheater: movies, comingSoon: movies, top250: movies
         }
+        // console.log(readyData);
         // this.setData({
         //     movies
         // });
@@ -105,6 +106,13 @@ Page({
         const category = event.currentTarget.dataset.category;
         wx.navigateTo({
             url: 'more-movie/more-movie?category=' + category,
+        });
+    },
+
+    onMovieTap: function(event) {
+        const movieId = event.currentTarget.dataset.movieid;
+        wx.navigateTo({
+            url: 'movie-detail/movie-detail?id=' + movieId,
         });
     },
 
