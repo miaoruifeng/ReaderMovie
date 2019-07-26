@@ -11,7 +11,8 @@ Page({
         categoryTitle: '',
         requestUrl: '',
         totalCount: 0,
-        isEmpty: true
+        isEmpty: true,
+        requestNum: 0
     },
 
     /**
@@ -39,8 +40,7 @@ Page({
     },
 
     processDoubanData: function(moviesData) {
-        // console.log(moviesData.total);
-        var total = moviesData.total;
+
         var movies = [];
         for (var idx in moviesData.subjects) {
             var subject = moviesData.subjects[idx];
@@ -72,11 +72,16 @@ Page({
         this.data.totalCount += 20;
         wx.hideNavigationBarLoading();
         wx.stopPullDownRefresh();
-        // console.log(this.data.totalCount);
-        if (this.data.totalCount >= total) {
-            this.data.totalCount = total;
+
+        this.data.requestNum++;
+        const count = Math.ceil(moviesData.total / 20) + 1;
+        // console.log(this.data.requestNum);
+        // console.log(count);
+        if (this.data.requestNum >= count) {
             wx.showToast({
-                title: '已经到底啦！',
+                title: '亲，已经到底啦！',
+                icon: 'none',
+                duration: 1000
             });
         }
     },
@@ -122,6 +127,7 @@ Page({
         this.data.totalCount = 0;
         util.http(refreshUrl, this.processDoubanData);
         wx.showNavigationBarLoading();
+        this.data.requestNum = 0;
     },
 
     /**
