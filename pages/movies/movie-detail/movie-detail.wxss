@@ -1,0 +1,138 @@
+@import "../stars/stars-template.wxss";
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.head-img {
+    width: 100%;
+    height: 280rpx;
+    -webkit-filter: blur(20px);
+}
+
+.head-img-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 280rpx;
+    padding: 0 10px;
+}
+
+.main-title {
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: 2px;
+    margin-top: 40rpx;
+}
+
+.addr-year {
+    font-size: 14px;
+    color: #fff;
+    margin-top: 30rpx;
+}
+
+.info-inner {
+    display: flex;
+    flex-direction: row;
+    margin-top: 70rpx;
+}
+
+.info-num {
+    color: #e72416;
+}
+
+.info-text {
+    font-size: #999;
+    margin-right: 40rpx;
+    margin-left: 10rpx;
+}
+
+.movie-img {
+    position: absolute;
+    right: 30rpx;
+    top: 160rpx;
+    width: 175rpx;
+    height: 230rpx;
+}
+
+.detail {
+    padding: 50rpx 10px;
+    border-bottom: 1px solid #eee;
+    color: #666;
+}
+
+.original-title {
+    font-size: 13px;
+    color: #1f3468;
+    font-weight: bold;
+    margin-bottom: 20rpx;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10rpx;
+}
+
+.mark {
+    margin-right: 30rpx;
+    white-space: nowrap;
+    color: #999;
+}
+
+.synopsis {
+    display: flex;
+    flex-direction: column;
+    padding: 50rpx 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.synopsis-font {
+    color: #999;
+}
+
+.synopsis-content {
+    margin-top: 30rpx;
+    line-height: 40rpx;
+    letter-spacing: 1px;
+}
+
+.carst {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50rpx;
+    padding-left: 10px;
+}
+
+.carst-font {
+    color: #999;
+    margin-bottom: 40rpx;
+}
+
+.carst-container {
+    display: inline-flex;
+    flex-direction: column;
+    width: 170rpx;
+    margin-bottom: 50rpx;
+    margin-right: 40rpx;
+    text-align: center;
+    white-space: normal;
+}
+
+.carst-imgs {
+    width: 100%;
+    white-space: nowrap;
+}
+
+.carst-img {
+    width: 170rpx;
+    height: 210rpx;
+}
+
+.carst-name {
+    margin: 10rpx auto 0;
+}

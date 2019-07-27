@@ -21,7 +21,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.5",
+	"libVersion": "2.0.4",
 	"appid": "wxbf996b48e04f2be9",
 	"projectname": "ReaderMovie",
 	"debugOptions": {

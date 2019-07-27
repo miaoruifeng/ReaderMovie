@@ -7,7 +7,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        movie: {}
     },
 
     /**
@@ -52,7 +52,32 @@ Page({
             castsInfo: util.convertToCastInfos(data.casts),
             summary: data.summary
         }
-        console.log(movie);
+        this.setData({
+            movie
+        });
+    },
+
+    /* 查看图片 */
+    viewMoviePostImg: function(e) {
+        var src = e.currentTarget.dataset.src;
+        wx.previewImage({
+            current: src, // 当前显示图片的http链接
+            urls: [src] // 需要预览的图片http链接列表
+        })
+    },
+
+    viewCarstImg: function(e) {
+        var carsts = this.data.movie.castsInfo;
+        var carstArray = [];
+        for (var idx in carsts) {
+            var carst = carsts[idx].img;
+            carstArray.push(carst);
+        }
+        var src = e.currentTarget.dataset.src;
+        wx.previewImage({
+            current: src, // 当前显示图片的http链接
+            urls: carstArray // 需要预览的图片http链接列表
+        })
     },
 
     /**
