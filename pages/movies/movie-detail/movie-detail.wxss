@@ -25,12 +25,11 @@
 .main-title {
     font-size: 18px;
     color: #fff;
-    letter-spacing: 2px;
+    letter-spacing: 2rpx;
     margin-top: 40rpx;
 }
 
 .addr-year {
-    font-size: 14px;
     color: #fff;
     margin-top: 30rpx;
 }
@@ -46,7 +45,7 @@
 }
 
 .info-text {
-    font-size: #999;
+    color: #999;
     margin-right: 40rpx;
     margin-left: 10rpx;
 }
@@ -56,7 +55,7 @@
     right: 30rpx;
     top: 160rpx;
     width: 175rpx;
-    height: 230rpx;
+    height: 238rpx;
 }
 
 .detail {

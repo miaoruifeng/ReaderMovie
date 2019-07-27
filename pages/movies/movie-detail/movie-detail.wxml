@@ -24,8 +24,8 @@
             <text>{{movie.director.name}}</text>
         </view>
         <view class="flex-row">
-            <text class="mark">{{movie.casts}}</text>
-            <text></text>
+            <text class="mark">影人</text>
+            <text>{{movie.casts}}</text>
         </view>
         <view class="flex-row">
             <text class="mark">类型</text>
