@@ -1,4 +1,7 @@
-var util = require("../../../utils/utils.js");
+// var util = require("../../../utils/utils.js");
+import {
+    Movie
+} from 'class/Movie.js'
 var app = getApp();
 
 Page({
@@ -16,7 +19,23 @@ Page({
     onLoad: function(options) {
         var movieId = options.id;
         var detailUrl = app.globalData.doubanBase + '/v2/movie/subject/' + movieId + app.globalData.apikey;
-        util.http(detailUrl, this.processDoubanData);
+        // util.http(detailUrl, this.processDoubanData);
+
+        // ES6 Class改写movie-detail.js -- Movie
+        var movie = new Movie(detailUrl);
+        // 理解同步、异步 var movieData = getMovieData
+        // es6箭头函数
+        // var that = this;
+        // movie.getMovieData(function(movie) {
+        //     that.setData({
+        //         movie
+        //     });
+        // });
+        movie.getMovieData((movie) => {
+            this.setData({
+                movie
+            });
+        });
     },
 
     processDoubanData: function(data) {
